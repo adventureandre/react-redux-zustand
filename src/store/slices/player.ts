@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const playerSlice = createSlice({
-    name:  'player',
+    name: 'player',
     initialState: {
         course: {
             modules: [
@@ -28,9 +28,20 @@ const playerSlice = createSlice({
                     ],
                 },
             ],
-        }
+        },
+        currentModuleIndex: 0,
+        currentLessonIndex: 0,
     },
-    reducers: {}
-}) 
+    reducers: {
+        
+        play: (state, action) => {
+            state.currentModuleIndex = action.payload[0]
+            state.currentLessonIndex = action.payload[1]
+        }
 
-export const player =  playerSlice.reducer
+    }
+})
+
+export const player = playerSlice.reducer
+
+export const { play } = playerSlice.actions
